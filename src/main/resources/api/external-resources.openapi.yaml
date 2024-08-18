@@ -1,0 +1,68 @@
+openapi: 3.0.1
+info:
+  title: external demo system
+  description: this system does not exist.
+  version: 1.0.0
+security:
+  - basicAuth: []
+paths:
+  /some/path/to/resource/{resourceId}:
+    get:
+      tags:
+        - some_resource
+      summary: Get something back
+      operationId: get_some_resource_by_resource_id
+      parameters:
+        - $ref: '#/components/parameters/ResourceId'
+      responses:
+        200:
+          description: consumption periods response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resource'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_response'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+  parameters:
+    ResourceId:
+      description: Id of the resource
+      name: resourceId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Resource:
+      description: The Resource returned by external system.
+      type: object
+      properties:
+        id:
+          type: string
+        creationDateTime:
+          type: string
+          format: date-time
+    error_response:
+      title: error response object
+      type: object
+      properties:
+        key:
+          type: string
+          description: error key.
+        message:
+          type: string
+          description: Describes the error
