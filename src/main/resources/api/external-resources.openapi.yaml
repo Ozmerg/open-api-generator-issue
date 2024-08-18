@@ -4,7 +4,7 @@ info:
   description: this system does not exist.
   version: 1.0.0
 security:
-  - basicAuth: []
+  - basicAuth: [ ]
 paths:
   /some/path/to/resource/{resourceId}:
     get:

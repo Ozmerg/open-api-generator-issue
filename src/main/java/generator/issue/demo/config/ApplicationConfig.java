@@ -15,17 +15,17 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "demo")
 public class ApplicationConfig {
 
-    @NotNull
-    private String url;
-    @NotNull
-    private String username;
-    @NotNull
-    private String password;
+  @NotNull
+  private String url;
+  @NotNull
+  private String username;
+  @NotNull
+  private String password;
 
-    @PostConstruct
-    public void logConfig() {
-        log.info("Using url: {}", getUrl());
-        log.info("Using username: {}", getUsername());
-        log.info("Using password: {}", getPassword());
-    }
+  @PostConstruct
+  public void logConfig() {
+    log.info("Using url: {}", getUrl());
+    log.info("Using username: {}", getUsername());
+    log.info("Using password: {}", getPassword());
+  }
 }
